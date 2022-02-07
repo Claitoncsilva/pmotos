@@ -1,6 +1,66 @@
+import * as React from 'react';
+//import TextField from '@mui/material/TextField';
+import DateRangePicker from '@mui/lab/DateRangePicker';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import Box from '@mui/material/Box';
+
+export default function BasicDateRangePicker() {
+  const [value, setValue] = React.useState([null, null]);
+
+  return (
+    <LocalizationProvider dateAdapter={AdapterDateFns}>
+      <DateRangePicker
+        startText="Check-in"
+        endText="Check-out"
+        value={value}
+        onChange={(newValue) => {
+          setValue(newValue);
+        }}
+        renderInput={(startProps, endProps) => (
+          <React.Fragment>
+            <TextField {...startProps} />
+            <Box sx={{ mx: 2 }}> to </Box>
+            <TextField {...endProps} />
+          </React.Fragment>
+        )}
+      />
+    </LocalizationProvider>
+  );
+}
+
+
+
+<KeyboardDatePicker
+clearable
+value={selectedDateGet}
+id='data-picker'
+label="Data do levantamento"
+onChange={date => handleDateChangeGet(date)}
+format="dd/MM/yyyy"
+disablePast="true"
+
+/>
+
+<KeyboardDatePicker
+                value={selectedDateLet}
+                label="Data da entrega"
+                onChange={date => handleDateChangeLet(date)}
+                minDate={new Date()}
+                minDateMessage="A data selecionada nao pode ser anterior a data da recolha"
+                format="dd/MM/yyyy"
+                disablePast="true"
+                shouldDisableDate= ("29/01/2022": DateIOType ) => true
+              />    
+
+
+
+
+
+
 import TemplateDefault from '../src/template/Default'
-import React from 'react';
-import  'date-fns';
+//import React from 'react';
+import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
 
 import{ 
@@ -8,17 +68,13 @@ import{
   MenuItem,
   FormControl,
   Select,
- // makeStyles,
+  makeStyles,
   Container,
   Grid,
   CardMedia,  
   Button,
-  
+  Box,
 } from '@material-ui/core';
- 
-//import {makeStyles} from '@material-ui/styles/makeStyles';
-import { makeStyles } from '@material-ui/styles';
-
 
 import {
   MuiPickersUtilsProvider,
@@ -26,16 +82,12 @@ import {
   KeyboardDatePicker,
 } from '@material-ui/pickers';    
 
-import DatePicker from '@material-ui/lab/DatePicker';
-
-//import * as React from 'react';
-import TextField from '@mui/material/TextField';
+import * as React from 'react';
+import TextField from '@material-ui/material/TextField';
 import DateRangePicker from '@mui/lab/DateRangePicker';
-
 import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
 import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
-
-import Box from '@mui/material/Box';
+//import Box from '@mui/material/Box';
 
 
 
@@ -149,7 +201,6 @@ export default function Home() {
               )}
             />
         </LocalizationProvider>
-
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <Grid container justifyContent="space-around" className={classes.grid}>                    
               <KeyboardTimePicker
@@ -162,7 +213,7 @@ export default function Home() {
                 }}
                />
                    
-              <KeyboardTimePicker
+              <npm rum dev
                 id="time-picker"
                 label="Hora da entrega"
                 value={selectedHourLet}
